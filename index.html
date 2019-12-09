@@ -512,103 +512,173 @@ div[id|="numberslider-body"] input::-ms-thumb {
 
 
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">$('head').append(tale.get("headAppend").text)
 
 
+
+
+
+
+
+
+
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.loadDelay = 2000;
 Config.history.controls = false;
 Config.passages.descriptions = true;
 Config.history.maxStates = 5;
 
 Setting.addHeader("Main Settings", "Various Settings that affect many parts of the game");
 Setting.addToggle("imperial", {
-		label   : "If true, use Imperial units instead of metric",
+		label   : "If true, use Imperial units instead of Metric.\nUnits will however be converted to Metric when stored in code\nThey'll just be converted back to Imperial when shown again.",
 		default : false
 	});
+Setting.addToggle("ygal_theme", {
+		label   : "Change the game's background & foreground colours to match current y!Gallery user-theme.\nOnly useable if game is hosted in either y!Gallery or y!Aux.",
+		default : true
+	});
 
-
+setup.fetishes = {};
 
 Setting.addHeader("Kinks", "Which kinks should be enabled. Some of these may be quite broad subjects.\nThe actual content of scenes involvolved may range from mild to extreme.\nThese may be available from the start or require the completion of quests\n to encounter.");
 
 Setting.addToggle("overstim", {
-	desc:"When a person continues to recieve stimulation after oversensitivity after a climax sets in.",
+	desc:"When a person continues to recieve stimulation after oversensitivity after a climax sets in,\nor is stimulated to rapidly reach climax several times in a row.",
 	label:"Overstimulation",
 	default:false});
+setup.fetishes.overstim = "overstim";
+
 Setting.addToggle("worship", {
 	desc:"When a person stimulates another in a devoting manner.",
 	label:"Worship",
 	default:false});
-Setting.addToggle("endurance", {
-	desc:"When a person's endurance is tested in a sexual manner, often through stamina.",
-	label:"Endurance",
-	default:false});
-Setting.addToggle("slave", {
-	desc:"When a person is owned by another, and must follow orders.",
-	label:"Slave",
-	default:false});
+setup.fetishes.worship = "worship";
+
 Setting.addToggle("sizediff", {
 	desc:"When two people of notably different sizes engage in sex",
 	label:"Size Difference",
 	default:false});
-Setting.addToggle("edging", {
-	desc:"When one person is kept from climaxing for an extended period.",
-	label:"Edging",
+setup.fetishes.sizediff = "sizediff";
+
+Setting.addToggle("agediff", {
+	desc:"When two people of notably different ages engage in sex",
+	label:"Age Difference",
 	default:false});
-Setting.addToggle("bodypart", {
-	desc:"When one person becomes sexually aroused by a certain bodypart. Example: Feet.",
-	label:"Bodyparts",
-	default:false});
+setup.fetishes.agediff= "agediff";
+
 Setting.addToggle("poly", {
 	desc:"When more than two people engage in sexual activities.",
 	label:"Polygami",
 	default:false});
+setup.fetishes.poly = "poly";
+
 Setting.addToggle("exhib", {
 	desc:"When a person engages in sexual activity in view of other people not part of said activity.",
 	label:"Exhibition",
 	default:false});
-Setting.addToggle("vore", {
-	desc:"When a person 'eats' another person (whole) for either or both's gratification.",
-	label:"Vorarephilia",
+setup.fetishes.exhib = "exhib";
+
+Setting.addToggle("bondage", {
+	desc:"When a person engages in sexual activities whilst being physically restrained in\nsome form.",
+	label:"Bondage",
 	default:false});
+setup.fetishes.bondage = "bondage";
+
+Setting.addToggle("slave", {
+	desc:"When a person is owned by another, and must follow orders.",
+	label:"Slave",
+	default:false});
+setup.fetishes.slave = "slave";
+
+Setting.addToggle("denial", {
+	desc:"When one person is denied climax for an extended period of time.",
+	label:"Denial",
+	default:false});
+setup.fetishes.denial = "denial";
+
+Setting.addToggle("bodypart", {
+	desc:"When one person becomes sexually aroused by a certain bodypart. Example: Feet.",
+	label:"Partialism",
+	default:false});
+setup.fetishes.bodyparts = "bodyparts";
+
 Setting.addToggle("hyper", {
 	desc:"Where a specific bodypart of a person is much larger than normal.",
 	label:"Hyper",
 	default:false});
-Setting.addToggle("somn", {
-	desc:"Where a person engages in sexual activity with an unconscious person.",
-	label:"Somnophilia",
+setup.fetishes.hyper = "hyper";
+
+Setting.addToggle("dubcon", {
+	desc:"Where a person engages in sexual activity with another party that might not be able to consent.\nExample: unconscious",
+	label:"dubcon",
 	default:false});
+setup.fetishes.dubcon = "dubcon";
+
 Setting.addToggle("incest",{
 	desc:"Where a person engages in sexual activities with a close relative.",
 	label:"Incest",
 	default:false});
+setup.fetishes.incest = "incest";
+
 Setting.addToggle("pet", {
 	desc:"Where a person becomes sexually aroused at being treated as a pet",
 	label:"Pet Play",
 	default:false});
-Setting.addToggle("merge", {
-	desc:"Where one person absorbs another into themself, either becoming a shared body, or a bodypart used by the 'host'.",
-	label:"Merging",
-	default:false});
+setup.fetishes.pet = "pet";
+
 Setting.addToggle("aphro", {
 	desc:"Where a person is under the influence of aphrodisiacs.",
 	label:"Aphrodisiacs",
 	default:false});
+setup.fetishes.aphro = "aphro";
+
 Setting.addToggle("insertion", {
 	desc:"Where a person has various objects (not genitalia) inserted into them (any bodily opening).",
 	label:"Insertion",
 	default:false});
-Setting.addToggle("goo", {
-	desc:"Where a person engages in sexual intercourse with a goo-like substance, possibly sentient.",
-	label:"Goo",
+setup.fetishes.insertion = "insertion";
+
+Setting.addToggle("object", {
+	desc:"When a person become aroused by objects normally not sexual.\nExample: Shoes, Underwear",
+	label:"Objectophilia",
 	default:false});
+
+setup.fetishes.object = "object";
+
 Setting.addToggle("cumplay", {
 	desc:"Where a person makes use of, or toys with sperm outside or after intercourse.",
 	label:"Cum Play",
 	default:false});
-Setting.addToggle("hypnosis", {
-	desc:"Where one person is not in full control of their own mind. May or may not remember events afterwards.",
-	label:"Hypnosis",
+setup.fetishes.cumplay = "cumplay";
+
+Setting.addToggle("mindcontrol", {
+	desc:"Where one person is not in full control of their own mind. May or may not remember events afterwards.\nExamples: possession, hypnosis.",
+	label:"Mind Control",
 	default:false});
+setup.fetishes.mindcontrol = "mindcontrol";
+
+Setting.addToggle("goo", {
+	desc:"Where a person engages in sexual intercourse with a goo-like substance, possibly sentient.",
+	label:"Goo",
+	default:false});
+setup.fetishes.goo = "goo";
+
+Setting.addToggle("merge", {
+	desc:"Where one person absorbs another into themself, either becoming a shared body, or a bodypart used\nby the 'host'.",
+	label:"Merging",
+	default:false});
+setup.fetishes.merge = "merge";
+
+Setting.addToggle("vore", {
+	desc:"When a person 'eats' another person (whole) for either or both's gratification.\nSafe and Sane; More akin to Endosomatophilia.",
+	label:"Vorarephilia",
+	default:false});
+setup.fetishes.vore = "vore";
+
+Setting.addToggle("piss", {
+	desc:"Sexual content involving urine.",
+	label:"Watersports",
+	default:false});
+setup.fetishes.piss = "piss";
 
 
 /* Usage: <<popup "Passage">> */
@@ -669,6 +739,54 @@ Macro.add('message', {
     }
 });
 
+window.questCheck = function (name) {
+	if(variables().quests[name] !== 'undefined' && !variables().quests[name].started){
+		
+		var check = true;
+		
+		for(var req in variables().quests[name].requirements){
+			if(req.startsWith("followers : ")){
+				var wanted = parseInt(req.replace("followers : ", ""));
+				if(variables().char.followers < wanted){
+					check = false;
+				}
+			}
+			else if(req.startsWith("quest : ")){
+				var wanted = req.replace("quest : ", "");
+				if(variables().quests[wanted] !== 'undefined' && !variables().quests[wanted].finished){
+					check = false;
+				}
+			}
+		}
+		
+		return check;
+		
+	}
+}
+
+window.randomMax = function (max) {
+  var min = 1;
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+window.diceRoll = function (dice) {
+	try{
+		var split = dice.toLowerCase().split('d');
+		var pool = 0;
+		for(var i = 0; i < parseInt(split[0]); i++){
+			pool += randomMax(parseInt(split[1]));
+		}
+		if(isNaN(pool) || isNaN(parseInt(split[0])) || isNaN(parseInt(split[1])) ){
+			throw new Error("diceRoll pool is NaN or input isn't parsable.\nPool: " + pool + "\nInput: " + dice);
+		}
+		return pool;
+	}
+	catch(e){
+		alert("Whoever just used the diceRoll() function must've lost a lot of Int stat-checks in their life.\n\n" + e);
+	}
+}
+
 ;!function(){"use strict";var t=!0,o=!1,l=!1,h={full:"#2ECC40",empty:"#FF4136",back:"#DDDDDD",height:"12px",width:"180px",animate:400,easing:"swing",text:"#111111",label:"",align:"center"},g=["center","left","right"],u=["swing","linear"];function c(t,e){return t&&"string"==typeof t&&(t=t.toLowerCase().trim())?t:e||""}function m(t){return t<.5?2*t*t:(4-2*t)*t-1}function f(t,e){if(!(this instanceof f))return new f(t,e);var s=clone(h);this.settings=Object.assign(s,t),this.settings.align=c(this.settings.align),this.settings.easing=c(this.settings.easing),g.includes(this.settings.align)||(this.settings.align="center"),u.includes(this.settings.easing)||(this.settings.easing="swing"),e=Number(e),Number.isNaN(e)&&(e=1),e=Math.clamp(e,0,1),this.value=e;var i=$(document.createElement("div")).addClass("chapel-meter").attr({"data-val":e,"data-label":this.settings.label}).css({position:"relative","background-color":this.settings.back,height:this.settings.height,width:this.settings.width,overflow:"hidden"}),n=$(document.createElement("div")).addClass("meter-label").css({top:0,right:0,"font-size":this.settings.height,"font-weight":"bold","line-height":"100%",width:"100%",height:"100%","vertical-align":"middle","text-align":this.settings.align,color:this.settings.text,"z-index":1,position:"relative",bottom:"100%"}).wiki(this.settings.label).appendTo(i),r=$(document.createElement("div")).addClass("meter-top").css({"background-color":this.settings.full,opacity:m(this.value),width:"100%",height:"100%","z-index":0}),a=$(document.createElement("div")).addClass("meter-bottom").css({position:"absolute",top:0,left:0,"background-color":this.settings.empty,opacity:1,width:100*this.value+"%",height:"100%","z-index":0}).append(r).appendTo(i);this.$element=i,this.$bars={top:r,bottom:a},(this.$label=n).css("font-size",parseInt(i.css("height"),10)<parseInt($(".passage").css("font-size"),10)?i.css("height"):$(".passage").css("font-size")),n.css("line-height",i.css("height"))}Object.assign(f,{_list:new Map,is:function(t){return t instanceof f},has:function(t){return f._list.has(t)&&f.is(f._list.get(t))},get:function(t){return f.has(t)?f._list.get(t):null},del:function(t){f.has(t)&&f._list.delete(t)},add:function(t,e,s){if(!f.has(t)||o){var i=new f(e,s);return f._list.set(t,i),i}console.error('Meter "'+t+'" already exists.')},_emit:function(t,e){f.is(t)&&t.$element.trigger({type:":"+e,meter:t})}}),Object.assign(f.prototype,{constructor:f,_label:function(t){var e=this;function s(){e.$label.empty().wiki(e.settings.label),e.$label.css("font-size",parseInt(e.$element.css("height"),10)<parseInt(e.$element.parent().css("font-size"),10)?e.$element.css("height"):e.$element.parent().css("font-size")),e.$label.css("line-height",e.$element.css("height"))}return t?setTimeout(s,Engine.minDomActionDelay):s(),this},_width:function(){var t=this;return this.$bars.bottom.animate({width:100*this.value+"%"},this.settings.animate,this.settings.easing,function(){f._emit(t,"meter-animation-complete")}),this},_color:function(){return this.$bars.top.animate({opacity:m(this.value)},this.settings.animate,this.settings.easing),this},animate:function(){return f._emit(this,"meter-animation-start"),this._color()._width()._label()},val:function(t){return void 0!==t&&(t=Number(t),Number.isNaN(t)&&(t=1),t=Math.clamp(t,0,1),this.value=t,this.animate()),this.value},options:function(t){return t&&"object"==typeof t&&Object.assign(this.settings,t),this.settings},unwrap:function(){return this.$element[0]},place:function(t,e){var s=$(document.createElement("span"));return t instanceof jQuery||(t=$(t)),t[0]||console.warn("meter#place() -> no valid target"),e&&"object"==typeof e&&(e.classes&&(Array.isArray(e.classes)||"string"==typeof e.classes)&&s.addClass(e.classes),e.attr&&"object"==typeof e.attr&&s.attr(e.attr)),t.append(s.append(this.$element)),this._label(!0),this},on:function(t,e){return"function"!=typeof e||t&&"string"==typeof t&&t.trim()&&(t=t.split(" ").map(function(t){return(t=t.split(".")[0])+".userland"}).join(" "),this.$element.on(t,e)),this},one:function(t,e){return"function"!=typeof e||t&&"string"==typeof t&&t.trim()&&(t=t.split(" ").map(function(t){return(t=t.split(".")[0])+".userland"}).join(" "),this.$element.one(t,e)),this},off:function(t){return t=t&&"string"==typeof t&&t.trim()?t.split(" ").map(function(t){return(t=t.split(".")[0])+".userland"}).join(" "):".userland",this.$element.off(t),this},click:function(t,e){return this.$element.ariaClick(t,e),this},clone:function(){return new f(this.settings,this.value)},toJSON:function(){return JSON.reviveWrapper("new setup.Meter("+JSON.stringify(this.settings)+", "+this.value+")")}}),setup.Meter=f,t&&(window.Meter=window.Meter||f),Macro.add("newmeter",{tags:["colors","sizing","animation","label"],handler:function(){if(0<State.length&&!l)return this.error("The `<<newmeter>>` macro must be called in your `StoryInit` special passage. Seriously. No excuses. --Love, Chapel");if(this.args.length<1)return this.error("The `<<newmeter>>` macro requires at least one argument: a meter name.");var t=this.args[0],e=null,s=null,i=null,n=null;if("string"!=typeof t)return this.error("Invalid meter name.");if(t=t.trim(),f.has(t)&&!o)return this.error('Cannot clobber the existing meter "'+t+'".');this.payload.length&&(e=this.payload.find(function(t){return"colors"===t.name}),s=this.payload.find(function(t){return"sizing"===t.name}),i=this.payload.find(function(t){return"animation"===t.name}),n=this.payload.find(function(t){return"label"===t.name}));var r={};if(e){if(!e.args.length)return this.error("No arguments passed to the `<<colors>>` tag.");switch(e.args.length){case 1:r.empty=e.args[0],r.full="transparent";break;case 2:r.full=e.args[0],r.empty=e.args[1];break;default:r.full=e.args[0],r.empty=e.args[1],r.back=e.args[2]}}if(s){if(!s.args.length)return this.error("No arguments passed to the `<<sizing>>` tag.");r.width=s.args[0],s.args[1]&&(r.height=s.args[1])}if(i){if(!i.args.length)return this.error("No arguments passed to the `<<animation>>` tag.");if("boolean"!=typeof i.args[0]||i.args[0]){if("string"!=typeof i.args[0])return this.error("The argument to the `<<animation>>` tag should be `true`, `false`, or a valid CSS time value.");r.animate=Util.fromCssTime(i.args[0])}else r.animate=0;i.args[1]&&["swing","linear"].includes(i.args[1])&&(r.easing=i.args[1])}if(n){var a=n.args[0];if(!a||"string"!=typeof a)return this.error("The labelText argument for the `<<label>>` tag is required.");r.label=a.trim(),n.args[1]&&"string"==typeof n.args[1]&&(r.text=n.args[1]),n.args[2]&&"string"==typeof n.args[2]&&(r.align=n.args[2])}f.add(t,r,this.args[1])}}),Macro.add("showmeter",{handler:function(){if(this.args.length<1)return this.error("This macro requires at least one argument: the meter's name.");var t=this.args[0];if("string"!=typeof t)return this.error("Invalid meter name.");t=t.trim();var e=f.get(t);if(!e||!f.is(e))return this.error('The meter "'+t+'" does not exist.');"number"==typeof this.args[1]&&e.val(this.args[1]),e.place(this.output,{classes:"macro-"+this.name,attr:{id:"meter-"+Util.slugify(t)}})}}),Macro.add("updatemeter",{handler:function(){if(this.args.length<2)return this.error("This macro requires two arguments: the meter's name and a value.");var t=this.args[0];if("string"!=typeof t)return this.error("Invalid meter name.");t=t.trim();var e=f.get(t);if(!e||!f.is(e))return this.error('The meter "'+t+'" does not exist.');e.val(this.args[1])}})}();
 
 !function(a,b){"function"==typeof define&&define.amd?define(["jquery"],b):b(a.jQuery)}(window,function(a){var b,c,d,e,f,g,h,i,j,k,l;if(c=!!document.createElement("canvas").getContext,b=function(){var a=document.createElement("div");a.innerHTML='<v:shape id="vml_flag1" adj="1" />';var b=a.firstChild;return b.style.behavior="url(#default#VML)",!b||"object"==typeof b.adj}(),!c&&!b)return void(a.fn.maphilight=function(){return this});if(c){i=function(a){return Math.max(0,Math.min(parseInt(a,16),255))},j=function(a,b){return"rgba("+i(a.substr(0,2))+","+i(a.substr(2,2))+","+i(a.substr(4,2))+","+b+")"},d=function(b){var c=a('<canvas style="width:'+a(b).width()+"px;height:"+a(b).height()+'px;"></canvas>').get(0);return c.getContext("2d").clearRect(0,0,a(b).width(),a(b).height()),c};var m=function(a,b,c,d,e){if(d=d||0,e=e||0,a.beginPath(),"rect"==b)a.rect(c[0]+d,c[1]+e,c[2]-c[0],c[3]-c[1]);else if("poly"==b){a.moveTo(c[0]+d,c[1]+e);for(var f=2;f<c.length;f+=2)a.lineTo(c[f]+d,c[f+1]+e)}else"circ"==b&&a.arc(c[0]+d,c[1]+e,c[2],0,2*Math.PI,!1);a.closePath()};e=function(b,c,d,e,f){var h=b.getContext("2d");if(e.shadow){h.save(),"inside"==e.shadowPosition&&(m(h,c,d),h.clip());var i=100*b.width,k=100*b.height;m(h,c,d,i,k),h.shadowOffsetX=e.shadowX-i,h.shadowOffsetY=e.shadowY-k,h.shadowBlur=e.shadowRadius,h.shadowColor=j(e.shadowColor,e.shadowOpacity);var l=e.shadowFrom;l||(l="outside"==e.shadowPosition?"fill":"stroke"),"stroke"==l?(h.strokeStyle="rgba(0,0,0,1)",h.stroke()):"fill"==l&&(h.fillStyle="rgba(0,0,0,1)",h.fill()),h.restore(),"outside"==e.shadowPosition&&(h.save(),m(h,c,d),h.globalCompositeOperation="destination-out",h.fillStyle="rgba(0,0,0,1);",h.fill(),h.restore())}h.save(),m(h,c,d),e.fill&&(h.fillStyle=j(e.fillColor,e.fillOpacity),h.fill()),e.stroke&&(h.strokeStyle=j(e.strokeColor,e.strokeOpacity),h.lineWidth=e.strokeWidth,h.stroke()),h.restore(),e.fade&&a(b).css("opacity",0).animate({opacity:1},100)},f=function(a){a.getContext("2d").clearRect(0,0,a.width,a.height)}}else d=function(b){return a('<var style="zoom:1;overflow:hidden;display:block;width:'+b.width+"px;height:"+b.height+'px;"></var>').get(0)},e=function(b,c,d,e,f){var g,h,i,j;for(var k in d)d[k]=parseInt(d[k],10);g='<v:fill color="#'+e.fillColor+'" opacity="'+(e.fill?e.fillOpacity:0)+'" />',h=e.stroke?'strokeweight="'+e.strokeWidth+'" stroked="t" strokecolor="#'+e.strokeColor+'"':'stroked="f"',i='<v:stroke opacity="'+e.strokeOpacity+'"/>',"rect"==c?j=a('<v:rect name="'+f+'" filled="t" '+h+' style="zoom:1;margin:0;padding:0;display:block;position:absolute;left:'+d[0]+"px;top:"+d[1]+"px;width:"+(d[2]-d[0])+"px;height:"+(d[3]-d[1])+'px;"></v:rect>'):"poly"==c?j=a('<v:shape name="'+f+'" filled="t" '+h+' coordorigin="0,0" coordsize="'+b.width+","+b.height+'" path="m '+d[0]+","+d[1]+" l "+d.join(",")+' x e" style="zoom:1;margin:0;padding:0;display:block;position:absolute;top:0px;left:0px;width:'+b.width+"px;height:"+b.height+'px;"></v:shape>'):"circ"==c&&(j=a('<v:oval name="'+f+'" filled="t" '+h+' style="zoom:1;margin:0;padding:0;display:block;position:absolute;left:'+(d[0]-d[2])+"px;top:"+(d[1]-d[2])+"px;width:"+2*d[2]+"px;height:"+2*d[2]+'px;"></v:oval>')),j.get(0).innerHTML=g+i,a(b).append(j)},f=function(b){var c=a("<div>"+b.innerHTML+"</div>");c.children("[name=highlighted]").remove(),b.innerHTML=c.html()};g=function(a){var b,c=a.getAttribute("coords").split(",");for(b=0;b<c.length;b++)c[b]=parseFloat(c[b]);return[a.getAttribute("shape").toLowerCase().substr(0,4),c]},l=function(b,c){var d=a(b);return a.extend({},c,!!a.metadata&&d.metadata(),d.data("maphilight"))},k=function(a){return!!a.complete&&("undefined"==typeof a.naturalWidth||0!==a.naturalWidth)},h={position:"absolute",left:0,top:0,padding:0,border:0};var n=!1;a.fn.maphilight=function(i){return i=a.extend({},a.fn.maphilight.defaults,i),c||n||(a(window).ready(function(){document.namespaces.add("v","urn:schemas-microsoft-com:vml");var b=document.createStyleSheet(),c=["shape","rect","oval","circ","fill","stroke","imagedata","group","textbox"];a.each(c,function(){b.addRule("v\\:"+this,"behavior: url(#default#VML); antialias:true")})}),n=!0),this.each(function(){var j,m,n,o,p,q,s;if(j=a(this),!k(this))return window.setTimeout(function(){j.maphilight(i)},200);if(n=a.extend({},i,!!a.metadata&&j.metadata(),j.data("maphilight")),s=j.get(0).getAttribute("usemap"),s&&(o=a('map[name="'+s.substr(1)+'"]'),j.is('img,input[type="image"]')&&s&&o.length>0)){if(j.hasClass("maphilighted")){var t=j.parent();j.insertBefore(t),t.remove(),a(o).unbind(".maphilight")}m=a("<div></div>").css({display:"block",backgroundImage:'url("'+this.src+'")',backgroundSize:"contain",position:"relative",padding:0,width:this.width,height:this.height}),n.wrapClass&&(n.wrapClass===!0?m.addClass(a(this).attr("class")):m.addClass(n.wrapClass)),j.before(m).css("opacity",0).css(h).remove(),b&&j.css("filter","Alpha(opacity=0)"),m.append(j),p=d(this),a(p).css(h),p.height=this.height,p.width=this.width,a(o).bind("alwaysOn.maphilight",function(){q&&f(q),c||a(p).empty(),a(o).find("area[coords]").each(function(){var b,f;f=l(this,n),f.alwaysOn&&(!q&&c&&(q=d(j[0]),a(q).css(h),q.width=j[0].width,q.height=j[0].height,j.before(q)),f.fade=f.alwaysOnFade,b=g(this),c?e(q,b[0],b[1],f,""):e(p,b[0],b[1],f,""))})}).trigger("alwaysOn.maphilight").bind("mouseover.maphilight, focus.maphilight",function(b){var d,f,h=b.target;if(f=l(h,n),!f.neverOn&&!f.alwaysOn){if(d=g(h),e(p,d[0],d[1],f,"highlighted"),f.groupBy){var i;i=/^[a-zA-Z][\-a-zA-Z]+$/.test(f.groupBy)?o.find("area["+f.groupBy+'="'+a(h).attr(f.groupBy)+'"]'):o.find(f.groupBy);var j=h;i.each(function(){if(this!=j){var a=l(this,n);if(!a.neverOn&&!a.alwaysOn){var b=g(this);e(p,b[0],b[1],a,"highlighted")}}})}c||a(p).append("<v:rect></v:rect>")}}).bind("mouseout.maphilight, blur.maphilight",function(a){f(p)}),j.before(p),j.addClass("maphilighted")}})},a.fn.maphilight.defaults={fill:!0,fillColor:"000000",fillOpacity:.2,stroke:!0,strokeColor:"ff0000",strokeOpacity:1,strokeWidth:1,fade:!0,alwaysOn:!1,neverOn:!1,groupBy:!1,wrapClass:!0,shadow:!1,shadowX:0,shadowY:0,shadowRadius:6,shadowColor:"000000",shadowOpacity:.8,shadowPosition:"outside",shadowFrom:!1}});
@@ -680,6 +798,16 @@ Macro.add('message', {
 
 /*! <<numberpool>> macro set for SugarCube v2 */
 !function(){"use strict";if("undefined"==typeof version||"undefined"==typeof version.title||"SugarCube"!==version.title||"undefined"==typeof version.major||version.major<2||"undefined"==typeof version.minor||version.minor<5)throw new Error("<<numberpool>> macro set requires SugarCube 2.5.0 or greater, aborting load");Macro.add("numberbox",{handler:function(){function validateAndApply(el,addend){var curValue=Math.trunc(Wikifier.getValue(varName)),newValue=Math.trunc(el.value),newPoolValue=null;if(Number.isNaN(newValue)||!Number.isFinite(newValue))return el.value=curValue,!1;if(null!=addend&&(newValue+=addend),newValue<minValue?newValue=minValue:newValue>maxValue&&(newValue=maxValue),null!==pool){var poolValue=pool.get(),delta=(newValue-curValue)*poolCost;delta<0?newPoolValue=poolValue-delta:delta>0&&poolValue>=poolCost?(poolValue<delta&&(newValue=curValue+Math.trunc(poolValue/poolCost),delta=poolValue-poolValue%poolCost),newPoolValue=poolValue-delta):newValue=curValue}return Wikifier.setValue(varName,newValue),el.value=newValue,null!==newPoolValue&&pool.set(newPoolValue),!0}var _this=this;if(this.args.length<4){var errors=[];return this.args.length<1&&errors.push("variable name"),this.args.length<2&&errors.push("default value"),this.args.length<3&&errors.push("min value"),this.args.length<4&&errors.push("max value"),this.error("no "+errors.join(" or ")+" specified")}if("string"!=typeof this.args[0])return this.error("variable name argument is not a string");var varName=this.args[0].trim();if("$"!==varName[0]&&"_"!==varName[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var varId=Util.slugify(varName),defValue=Number(this.args[1]),minValue=Number(this.args[2]),maxValue=Number(this.args[3]),poolCost=1,autofocus=!1;if(this.args.length>5?(poolCost=Number(this.args[4]),autofocus="autofocus"===this.args[5]):this.args.length>4&&("autofocus"===this.args[4]?autofocus=!0:poolCost=Number(this.args[4])),Number.isNaN(defValue)||!Number.isFinite(defValue)||Math.trunc(defValue)!==defValue)return this.error("default value ("+this.args[1]+") is not a whole number");if(Number.isNaN(minValue)||!Number.isFinite(minValue)||Math.trunc(minValue)!==minValue)return this.error("min value ("+this.args[2]+") is not a whole number");if(Number.isNaN(maxValue)||!Number.isFinite(maxValue)||Math.trunc(maxValue)!==maxValue)return this.error("max value ("+this.args[3]+") is not a whole number");if(Number.isNaN(poolCost)||!Number.isFinite(poolCost)||Math.trunc(poolCost)!==poolCost||poolCost<=0)return this.error("pool cost ("+this.args[4]+") is not a whole number greater than zero");if(defValue<minValue)return this.error("default value ("+this.args[1]+") is less than min value ("+this.args[2]+")");if(defValue>maxValue)return this.error("default value ("+this.args[1]+") is greater than max value ("+this.args[3]+")");var pool=function(){var parent=_this.contextSelect(function(ctx){return"numberpool"===ctx.name});return null!==parent&&parent.hasOwnProperty("pool")?parent.pool:null}();Config.debug&&this.debugView.modes({block:!0});var $elControl=jQuery(document.createElement("div")),$elInput=jQuery(document.createElement("input"));$elControl.attr("id",this.name+"-body-"+varId).addClass("macro-"+this.name).appendTo(this.output),jQuery(document.createElement("button")).attr({id:this.name+"-minus-"+varId,tabindex:0}).text("").on("click",function(){return validateAndApply($elInput[0],-1)}).appendTo($elControl),$elInput.attr({id:this.name+"-input-"+varId,name:this.name+"-input-"+varId,type:"text",pattern:"\\d+",tabindex:0}).on("change",function(){validateAndApply(this)}).on("keypress",function(ev){13===ev.which&&(ev.preventDefault(),$elInput.trigger("change"))}).appendTo($elControl),jQuery(document.createElement("button")).attr({id:this.name+"-plus-"+varId,tabindex:0}).text("").on("click",function(){return validateAndApply($elInput[0],1)}).appendTo($elControl),$elInput.val(defValue),validateAndApply($elInput[0]),autofocus&&($elInput.attr("autofocus","autofocus"),postdisplay["#autofocus:"+$elInput.attr("id")]=function(task){delete postdisplay[task],setTimeout(function(){return $elInput.focus()},Engine.minDomActionDelay)})}}),Macro.add("numberpool",{tags:["onchange"],handler:function(){if(0===this.args.length)return this.error("no variable name specified");if(this.payload.length>2)return this.error("multiple <<onchange>> sections specified");if("string"!=typeof this.args[0])return this.error("variable name argument is not a string");var varName=this.args[0].trim();if("$"!==varName[0]&&"_"!==varName[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var curValue=Wikifier.getValue(varName);if("number"!=typeof curValue||Number.isNaN(curValue)||!Number.isFinite(curValue))return this.error("pool value is not a number");var varId=Util.slugify(varName);TempState.hasOwnProperty(this.name)||(TempState[this.name]={}),TempState[this.name].hasOwnProperty(varId)||(TempState[this.name][varId]=0),Object.defineProperty(this,"pool",{value:Object.defineProperties({},{get:{value:function(){return Wikifier.getValue(varName)}},set:{value:function(content){return function(value){var curValue=Wikifier.getValue(varName);value!==curValue&&(Wikifier.setValue(varName,value),content&&new Wikifier(null,content))}}(this.payload.length>1?this.payload[1].contents.trim():"")}})}),jQuery(document.createElement("div")).attr("id",this.name+"-"+varId+"-"+TempState[this.name][varId]++).addClass("macro-"+this.name).wiki(this.payload[0].contents.replace(/^\n/,"")).appendTo(this.output)}}),Macro.add("numberslider",{handler:function(){function stepValidate(value){if(fracDigits>0){var ma=Number(minValue+"e"+fracDigits),sa=Number(stepValue+"e"+fracDigits),_va=Number(value+"e"+fracDigits)-ma;return Number(_va-_va%sa+ma+"e-"+fracDigits)}var va=value-minValue;return va-va%stepValue+minValue}function validateAndApply(el){var curValue=Wikifier.getValue(varName),newValue=Number(el.value),newPoolValue=null;if(Number.isNaN(newValue)||!Number.isFinite(newValue))return el.value=curValue,!1;if(newValue=stepValidate(newValue),newValue<minValue?newValue=minValue:newValue>maxValue&&(newValue=maxValue),null!==pool)if(fracDigits>0){var pa=Number(pool.get()+"e"+fracDigits),ca=Number(curValue+"e"+fracDigits),na=Number(newValue+"e"+fracDigits),delta=na-ca;pa<delta&&(na-=delta-pa,delta=na-ca,newValue=Number(na+"e-"+fracDigits)),newPoolValue=Number(pa-delta+"e-"+fracDigits)}else{var poolValue=pool.get(),_delta=newValue-curValue;poolValue<_delta&&(newValue-=_delta-poolValue,_delta=newValue-curValue),newPoolValue=poolValue-_delta}return Wikifier.setValue(varName,newValue),el.value=newValue,null!==newPoolValue&&pool.set(newPoolValue),!0}var _this2=this;if(this.args.length<5){var errors=[];return this.args.length<1&&errors.push("variable name"),this.args.length<2&&errors.push("default value"),this.args.length<3&&errors.push("min value"),this.args.length<4&&errors.push("max value"),this.args.length<5&&errors.push("step value"),this.error("no "+errors.join(" or ")+" specified")}if("string"!=typeof this.args[0])return this.error("variable name argument is not a string");var varName=this.args[0].trim();if("$"!==varName[0]&&"_"!==varName[0])return this.error('variable name "'+this.args[0]+'" is missing its sigil ($ or _)');var varId=Util.slugify(varName),defValue=Number(this.args[1]),minValue=Number(this.args[2]),maxValue=Number(this.args[3]),stepValue=Number(this.args[4]),autofocus=this.args.length>5&&"autofocus"===this.args[5];if(Number.isNaN(defValue)||!Number.isFinite(defValue))return this.error("default value ("+this.args[1]+") is not a number");if(Number.isNaN(minValue)||!Number.isFinite(minValue))return this.error("min value ("+this.args[2]+") is not a number");if(Number.isNaN(maxValue)||!Number.isFinite(maxValue))return this.error("max value ("+this.args[3]+") is not a number");if(Number.isNaN(stepValue)||!Number.isFinite(stepValue)||stepValue<=0)return this.error("step value ("+this.args[4]+") is not a number greater than zero");if(defValue<minValue)return this.error("default value ("+this.args[1]+") is less than min value ("+this.args[2]+")");if(defValue>maxValue)return this.error("default value ("+this.args[1]+") is greater than max value ("+this.args[3]+")");var fracDigits=function(){var str=String(stepValue),pos=str.lastIndexOf(".");return pos===-1?0:str.length-pos-1}();if(stepValidate(maxValue)!==maxValue)return this.error("max value ("+this.args[3]+") is not a multiple of the step value ("+this.args[4]+") plus the min value ("+this.args[2]+")");var pool=function(){var parent=_this2.contextSelect(function(ctx){return"numberpool"===ctx.name});return null!==parent&&parent.hasOwnProperty("pool")?parent.pool:null}();Config.debug&&this.debugView.modes({block:!0});var $elControl=jQuery(document.createElement("div")),$elInput=jQuery(document.createElement("input")),$elValue=void 0,showValue=void 0;$elControl.attr("id",this.name+"-body-"+varId).addClass("macro-"+this.name).appendTo(this.output),$elInput.attr({id:this.name+"-input-"+varId,name:this.name+"-input-"+varId,type:"range",min:minValue,max:maxValue,step:stepValue,tabindex:0}).on("change input."+Util.slugify(this.name),function(){validateAndApply(this),"function"==typeof showValue&&showValue()}).on("keypress",function(ev){13===ev.which&&(ev.preventDefault(),$elInput.trigger("change"))}).appendTo($elControl),!Browser.isIE||Browser.ieVersion>9?($elValue=jQuery(document.createElement("span")).attr("id",this.name+"-value-"+varId).appendTo($elControl),showValue=function(){$elValue.text(Number($elInput.val()).toFixed(fracDigits))}):$elInput.off("input."+Util.slugify(this.name)),$elInput.val(defValue),validateAndApply($elInput[0]),"function"==typeof showValue&&showValue(),autofocus&&($elInput.attr("autofocus","autofocus"),postdisplay["#autofocus:"+$elInput.attr("id")]=function(task){delete postdisplay[task],setTimeout(function(){return $elInput.focus()},Engine.minDomActionDelay)})}})}();
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -743,37 +871,20 @@ Macro.add('message', {
 &lt;&lt;timed 2s&gt;&gt;
 	&lt;&lt;notify 16000&gt;&gt;Be sure to set your preferred options and viewing-material in the Settings Menu!&lt;&lt;/notify&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="nobr" position="100,100" size="100,100">
-&lt;!-- Pushed to by the &lt;&lt;waypoint&gt;&gt; widget --&gt;
-&lt;!--Each entry consists of id(mapname) and current amount of waypoints--&gt;
-&lt;!-- Only consists of maps with waypoints --&gt;
-&lt;&lt;set $maps to {
-	AelstonMap: 0,
-	CorhedgeMap: 0, 
-	DeepCourtMap: 0, 
-	FaymereMap: 0, 
-	FoxRiverMap: 0, 
-	LynwoodMap: 0, 
-	MarblegateMap: 0, 
-	MaymoorMap: 0, 
-	NorthbarrowMap: 0, 
-	RoalakeCastleMap: 0, 
-	RosecrestMap: 0, 
-	SouthbrookMap: 0,
-	StockacreMap: 0,
-	StrongMerrowMap: 0, 
-	ValcrestMap: 0, 
-	WestbrookMap: 0, 
-	WheatboroughMap: 0,
-	WildehallMap: 0 
-}&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="nobr" position="100,100" size="100,100">&lt;&lt;include &quot;LocalSetup&quot;&gt;&gt;
+
+&lt;!-- &lt;&lt;include &quot;yGalleryIntegration&quot;&gt;&gt; --&gt;&gt;
+
 
 &lt;&lt;set $npc = {}&gt;&gt;
-&lt;&lt;include &quot;NPCs&quot;&gt;&gt;
-&lt;&lt;include &quot;Character&quot;&gt;&gt;
-&lt;&lt;include &quot;Dialogue&quot;&gt;&gt;
-&lt;&lt;include &quot;StatRules&quot;&gt;&gt;
+&lt;&lt;include &quot;NPCRegistry&quot;&gt;&gt;
+&lt;&lt;include &quot;CharacterRegistry&quot;&gt;&gt;
+&lt;&lt;include &quot;DialogueRegistry&quot;&gt;&gt;
+&lt;&lt;include &quot;StatRulesRegistry&quot;&gt;&gt;
+&lt;&lt;include &quot;QuestRegistry&quot;&gt;&gt;
 &lt;&lt;set $inventory = {}&gt;&gt;
+
+&lt;&lt;include &quot;ModRegistry&quot;&gt;&gt;
 
 &lt;&lt;newmeter &#39;healthBar&#39; 0&gt;&gt;
     &lt;&lt;animation 750ms&gt;&gt;
@@ -801,7 +912,17 @@ Macro.add('message', {
     &lt;&lt;colors &#39;darkgreen&#39; &#39;darkgreen&#39; &#39;black&#39;&gt;&gt;
     &lt;&lt;label &#39;Dexterity: $char.dex&#39; &#39;white&#39; center&gt;&gt;
 	&lt;&lt;sizing &#39;100%&#39;&gt;&gt;
-&lt;&lt;/newmeter&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="HeightWidget" tags="widget" position="102,400" size="100,100">&lt;&lt;widget &quot;height&quot;&gt;&gt;
+&lt;&lt;/newmeter&gt;&gt;
+
+&lt;&lt;set _keys = Object.keys($npc)&gt;&gt;
+&lt;&lt;for _i = 0; _i &lt; _keys.length; _i++&gt;&gt;
+	&lt;&lt;set $npc[_keys[_i]].pierced = true&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
+
+&lt;&lt;for _i, _npc range $npc&gt;&gt;
+	&lt;&lt;set $npc[_npc.name].piercing = true&gt;&gt;
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="HeightWidget" tags="widget" position="102,400" size="100,100">&lt;&lt;widget &quot;height&quot;&gt;&gt;
 \&lt;&lt;if $heighsystem eq &quot;cm&quot;&gt;&gt;
 	\&lt;&lt;print $args[0]&gt;&gt;&lt;&lt;print &quot;cm&quot;&gt;&gt;
 \&lt;&lt;elseif $heighsystem eq &quot;inch&quot;&gt;&gt;
@@ -1139,7 +1260,7 @@ coords=&quot;451,399,489,431,511,387,571,367,575,333,510,295,495,317,478,355&quo
 &lt;br&gt;
 
 &lt;&lt;if tags().includes(&quot;no-meter&quot;)&gt;&gt;
-	&lt;!-- fill empty space so that no movement is made between statements --&gt;
+	&lt;!-- fill with empty space so that no movement is made between statements --&gt;
 	&lt;br&gt;
 	&lt;br&gt;
 	&lt;br&gt;
@@ -1152,19 +1273,19 @@ coords=&quot;451,399,489,431,511,387,571,367,575,333,510,295,495,317,478,355&quo
 &lt;&lt;else&gt;&gt;
 	&lt;div id=&quot;char-level&quot;&gt;&lt;&lt;print &quot;Level: &quot; + $char.lvl&gt;&gt;&lt;/div&gt;
 	&lt;br&gt;
-	&lt;&lt;set _health = $char.health / $maxHealth&gt;&gt;
+	&lt;&lt;set _health = $char.health / setup.maxHealth&gt;&gt;
 	&lt;&lt;showmeter &#39;healthBar&#39; _health&gt;&gt;
 	&lt;br&gt;
-	&lt;&lt;set _xp = $char.xp / $maxXP&gt;&gt;
+	&lt;&lt;set _xp = $char.xp / setup.maxXP&gt;&gt;
 	&lt;&lt;showmeter &#39;xpBar&#39; _xp&gt;&gt;
 	&lt;br&gt;
-	&lt;&lt;set _str = $char.str / $maxStr&gt;&gt;
+	&lt;&lt;set _str = $char.str / setup.maxStr&gt;&gt;
 	&lt;&lt;showmeter &#39;strBar&#39; _str&gt;&gt;
 	&lt;br&gt;
-	&lt;&lt;set _int = $char.int / $maxInt&gt;&gt;
+	&lt;&lt;set _int = $char.int / setup.maxInt&gt;&gt;
 	&lt;&lt;showmeter &#39;intBar&#39; _int&gt;&gt;
 	&lt;br&gt;
-	&lt;&lt;set _dex = $char.dex / $maxDex&gt;&gt;
+	&lt;&lt;set _dex = $char.dex / setup.maxDex&gt;&gt;
 	&lt;&lt;showmeter &#39;dexBar&#39; _dex&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -1321,7 +1442,7 @@ NPC&#39;s
 			//slightly less straightforward
 			$npc[&quot;Aerel&quot;].name  
 			
-			//Least strraightforward, requires one to know the NPC&#39;s index
+			//Least straightforward, requires one to know the NPC&#39;s index
 			//Requires the use of &lt;&lt;print&gt;&gt; macro et similar to display data
 			&lt;&lt;print $npc[Object.keys($npc)[0]].height&gt;&gt;
 			
@@ -1365,37 +1486,43 @@ NPC&#39;s
 &lt;&lt;widget &quot;colour&quot;&gt;&gt;
 	&lt;&lt;set _colour = &quot;text-shadow: 3px 2px &quot; + $args[0] + &quot;;&quot;&gt;&gt;
 	&lt;span @style=&quot;_colour&quot;&gt;&lt;&lt;print $args[1]&gt;&gt;&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="NPCs" tags="" position="1901,100" size="100,100">&lt;!-- name, str, int, dex, vers, ego, height, money, fet[3] --&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="NPCRegistry" tags="" position="1899,100" size="100,100">&lt;!-- name, str, int, dex, vers, ego, height, money fet fet fet cock-length cock-width|&quot;proportionate&quot;--&gt;
 
-/* Aerel The God */
-&lt;&lt;npcfactory &quot;Aerel&quot; 20 20 20 50 50 182 99999999 &quot;overstimulation&quot; &quot;worship&quot; &quot;endurance&quot;&gt;&gt;
+/* David the Golem */
+&lt;&lt;npcfactory &quot;David&quot; 18 2 4 50 0 335 580 setup.fetishes.pet setup.fetishes.exhib setup.fetishes.denial 38 &quot;proportionate&quot;&gt;&gt;
+
+/* Hanecock the nonchalant */
+&lt;&lt;npcfactory &quot;Hanecock&quot; 6 6 6 10 90 187 20 setup.fetishes.aphro setup.fetishes.exhib setup.fetishes.dubcon 19 &quot;proportionate&quot;&gt;&gt;
+
+/* Aerel The Sea God */
+&lt;&lt;npcfactory &quot;Aerel&quot; 20 20 20 50 50 182 99999999 setup.fetishes.overstim setup.fetishes.worship setup.fetishes.incest 30 &quot;proportionate&quot;&gt;&gt;
 
 /* Gabrien The Spy */
-&lt;&lt;npcfactory &quot;Gabrien&quot; 6 16 12 40 70 184 &quot;pet&quot; &quot;oral&quot; &quot;praise&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Gabrien&quot; 6 16 12 40 70 184 425 setup.fetishes.pet setup.fetishes.mindcontrol setup.fetishes.dubcon 16 &quot;proportionate&quot;&gt;&gt;
 
 /* Tristan The Smith */
-&lt;&lt;npcfactory &quot;Tristan&quot; 16 8 2 90 30 216 &quot;sizediff&quot; &quot;worship&quot; &quot;edging&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Tristan&quot; 16 8 2 90 30 216 280 setup.fetishes.sizediff setup.fetishes.cumplay setup.fetishes.denial 24 &quot;proportionate&quot;&gt;&gt;
 
 /* Alistair The Marshal */
-&lt;&lt;npcfactory &quot;Alistair&quot; 16 6 10 85 40 187 &quot;feet&quot; &quot;poly&quot; &quot;exhib&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Alistair&quot; 16 6 10 85 40 187 640 setup.fetishes.bodyparts setup.fetishes.poly setup.fetishes.exhib 20 &quot;proportionate&quot;&gt;&gt;
 
 /* Cullen The Marshal */
-&lt;&lt;npcfactory &quot;Cullen&quot; 16 6 10 80 55 185 &quot;pits&quot; &quot;poly&quot; &quot;exhib&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Cullen&quot; 16 6 10 80 55 185 650 setup.fetishes.bodyparts setup.fetishes.poly setup.fetishes.exhib 20 &quot;proportionate&quot;&gt;&gt;
 
 /* Renard The Thief */
-&lt;&lt;npcfactory &quot;Renard&quot; 6 12 16 30 60 173 &quot;bondage&quot; &quot;oral&quot; &quot;praise&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Renard&quot; 6 12 16 30 60 173 2300 setup.fetishes.bondage setup.fetishes.aphro setup.fetishes.insertion 15 &quot;proportionate&quot;&gt;&gt;
 
-/* Andreas The Shopkeeper */
-&lt;&lt;npcfactory &quot;Andreas&quot; 8 8 8 30 30 178 &quot;pet&quot; &quot;oral&quot; &quot;praise&quot;&gt;&gt;
+/* Andreas The Barkeeper */
+&lt;&lt;npcfactory &quot;Andreas&quot; 8 8 8 30 30 178 275 setup.fetishes.cumplay setup.fetishes.slave setup.fetishes.piss 17 &quot;proportionate&quot;&gt;&gt;
 
 /* Fawkes The Sailor */
-&lt;&lt;npcfactory &quot;Fawkes&quot; 12 6 14 70 70 191 &quot;pet&quot; &quot;oral&quot; &quot;praise&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Fawkes&quot; 12 6 14 70 70 191 160 setup.fetishes.agediff setup.fetishes.hyper setup.fetishes.merge 32 &quot;proportionate&quot;&gt;&gt;
 
 /* Ansell the Priest */
-&lt;&lt;npcfactory &quot;Fawkes&quot; 4 16 10 20 20 168 &quot;worship&quot; &quot;oral&quot; &quot;praise&quot;&gt;&gt;
+&lt;&lt;npcfactory &quot;Fawkes&quot; 16 4 10 20 20 168 310 setup.fetishes.worship setup.fetishes.merge setup.fetishes.vore 15 &quot;proportionate&quot;&gt;&gt;
 
-
-</tw-passagedata><tw-passagedata pid="34" name="NPCCreateWidget" tags="widget nobr" position="100,653" size="100,100">&lt;!-- name, str, int, dex, vers, ego, height, money, fet[3] --&gt;
+/* Miel the Apprentice Mage */
+&lt;&lt;npcfactory &quot;Miel&quot; 2 16 5 50 75 176 120 setup.fetishes.vore setup.fetishes.goo setup.fetishes.cumplay 21 &quot;proportionate&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="NPCCreateWidget" tags="widget nobr" position="100,653" size="100,100">&lt;!-- name, str, int, dex, vers, ego, height, money--&gt;
 &lt;!-- vers(less = bottom) ego(less = selfless)--&gt;
 &lt;&lt;widget &quot;npcfactory&quot;&gt;&gt;
 	&lt;&lt;set $npc[$args[0]] = {
@@ -1407,8 +1534,59 @@ NPC&#39;s
 		&quot;ego&quot;:    $args[5],
 		&quot;height&quot;: $args[6],
 		&quot;money&quot;:  $args[7],
-		&quot;fet&quot;:    [$args[8], $args[9], $args[10]]
+		&quot;fet&quot;:    [],
+		&quot;cock&quot;: {
+			&quot;length&quot;: 0,
+			&quot;width&quot;: 0,
+			&quot;flags&quot;: []
+		}
 	}&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;!-- &lt;&lt;cock name length width&gt;&gt; --&gt;
+&lt;&lt;widget &quot;cock&quot;&gt;&gt;
+	&lt;&lt;set $npc[$args[0]].cock.length = $args[1]&gt;&gt; 
+	&lt;&lt;if $args[2] == &quot;proportionate&quot;&gt;&gt;
+		&lt;&lt;set $npc[$args[0]].cock.width = Math.round($args[2] / Math.PI)&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;set $npc[$args[0]].cock.width = $args[2]&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;!-- &lt;&lt;fetish name fet1 fet2 fet3&gt;&gt; --&gt;
+&lt;&lt;widget &quot;fetish&quot;&gt;&gt;
+	&lt;&lt;set _name = $args[0]&gt;&gt;
+	&lt;&lt;set $npc[$args[0]].fet = [$args[1], $args[2], $args[3]]&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;!-- longhand npc-creation for all-in-one-go instantiation --&gt;
+&lt;&lt;widget &quot;npcfactoryfull&quot;&gt;&gt;
+	&lt;&lt;set $npc[$args[0]] = {
+		&quot;name&quot;:   $args[0], 
+		&quot;str&quot;:    $args[1],
+		&quot;int&quot;:    $args[2],
+		&quot;dex&quot;:    $args[3],
+		&quot;vers&quot;:   $args[4],
+		&quot;ego&quot;:    $args[5],
+		&quot;height&quot;: $args[6],
+		&quot;money&quot;:  $args[7],
+		&quot;fet&quot;:    $args[8],
+		&quot;cock&quot;: {
+			&quot;length&quot;: $args[9],
+			&quot;width&quot;: 0,
+			&quot;flags&quot;: []
+		}
+	}&gt;&gt;
+	
+	&lt;&lt;if def $args[11]&gt;&gt;
+		&lt;&lt;set $npc[$args[0]].cock.flags = $args[11]&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	
+	&lt;&lt;if ndef $args[10] || $args[10] == &quot;proportionate&quot;&gt;&gt;
+		&lt;&lt;set $npc[$args[0]].cock.width = Math.round($args[10] / Math.PI)&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;set $npc[$args[0]].cock.width = $args[10]&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="NPCDataWidget" tags="widget nobr" position="227,650" size="100,100">&lt;!-- &quot;key&quot; &#39;value&#39; &quot;set&quot;|&quot;add&quot;--&gt;
 &lt;&lt;widget npcloop&gt;&gt;
 	&lt;&lt;set _keys = Object.keys($npc)&gt;&gt;
@@ -1427,7 +1605,24 @@ NPC&#39;s
 	&lt;&lt;for _i = 0; _i &lt; _keys.length; _i++&gt;&gt;
 		&lt;&lt;print $npc[_keys[_i]][$args[0]]&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="MoneyPrintWidget" tags="widget nobr" position="351,402" size="100,100">&lt;&lt;widget &quot;moneyprint&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="MoneyWidget" tags="widget nobr" position="351,402" size="100,100">&lt;!-- usage &lt;&lt;money amount &quot;gold|silver|copper&quot;&gt;&gt; --&gt;
+&lt;&lt;widget &quot;money&quot;&gt;&gt;
+	&lt;&lt;set _type = $args[1].toLowerCase()&gt;&gt;
+	&lt;&lt;set _input = $args[0]&gt;&gt;
+	&lt;&lt;switch _type&gt;&gt;
+	&lt;&lt;case &quot;gold&quot;&gt;&gt;
+		&lt;&lt;set _input *= 10000&gt;&gt;
+	&lt;&lt;case &quot;silver&quot;&gt;&gt;
+		&lt;&lt;set _input *= 100&gt;&gt;
+	&lt;&lt;case &quot;copper&quot;&gt;&gt;
+		
+	&lt;&lt;default&gt;&gt;
+		&lt;&lt;set _input = 0&gt;&gt;
+	&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;set $char.money += _input&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;moneyprint&quot;&gt;&gt;
 	&lt;&lt;set _money = $args[0]&gt;&gt;
 	
 	/* If there&#39;s any gold */
@@ -1459,7 +1654,21 @@ NPC&#39;s
 	&lt;&lt;print &quot;Copper: &quot; + _copper&gt;&gt;
 &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="TabWidget" tags="widget nobr" position="351,525" size="100,100">&lt;&lt;widget &quot;tab&quot;&gt;&gt;
 	&lt;&lt;print &quot;&amp;emsp;&quot;&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="Character" tags="" position="1700,101" size="100,100">&lt;&lt;set $char = {
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;sysout&quot;&gt;&gt;
+	&lt;&lt;script&gt;&gt;
+		var output = &quot;&quot;;
+		for(var x in variables().args){
+			if(variables().args[x] == variables().args.full ||
+				variables().args[x] == variables().args.raw){
+				continue;
+			}
+			output += variables().args[x] + &quot; &quot;;
+		}
+		alert(output);
+	&lt;&lt;/script&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="CharacterRegistry" tags="" position="1700,101" size="100,100">&lt;&lt;set $char = {
 	&quot;name&quot;:   &quot;Leon&quot;,
 	&quot;surname&quot;:	&quot;Sachell&quot;,
 	&quot;health&quot;:	50,
@@ -1473,13 +1682,14 @@ NPC&#39;s
 	&quot;heightcm&quot;:	180,
 	&quot;heightfoot&quot;: 6,
 	&quot;heightinch&quot;: 0,
-	&quot;money&quot;:	0
+	&quot;money&quot;:	0,
+	&quot;followers&quot; : 0
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="DivineMeeting2" tags="" position="800,226" size="100,100">&lt;&lt;tab&gt;&gt;Perhaps it&#39;s the after effects off whatever knocked out you, or perhaps you&#39;ve always been this moronic, but it&#39;s too late now. The words left your mouth before you knew it. Was questioning your own presence with a god heresy? You decide to ask the next priest you encounter, if you make it out alive.
 &lt;&lt;tab&gt;&gt;The god lounging before you suddenly stills, eyes boring into your own, before breaking out a bright smile. &quot;I like you. You got some spirit in you. Not as much as I&#39;d like, but we can work on that. I do hate those frustrating &#39;yea-sayers&#39; you call priests.&quot; He states, before a slightly shocked expression passes over his face. &quot;Oh damned sea urchins where are my manners today. I&#39;m sorry. You&#39;re here because my nephew Lord Kaitus decided to assassinate you. Luckily for you, my sister Lady Oris owed me a favour, and loves me more than my nephew.&quot;
 &lt;&lt;tab&gt;&gt;Alright. You&#39;re dead. Not in the &#39;impeding Doom&#39; with a capital D sense, but rather &#39;I&#39;m actually dead, and in the underworld right now&#39; sense.
 &lt;&lt;tab&gt;&gt;&quot;Now, before we continue, I recommend that you &lt;&lt;colour &quot;blue&quot; &quot;Edit your settings&quot;&gt;&gt; to your liking.&quot; He states, his voice deep and echoing as if underwater, and his gaze bores into your own again, but this time you can feel the thinly veiled threat behind them. However, as odd as it sounds, it doesn&#39;t feel as if he&#39;s talking to //you//.
 
-&lt;&lt;message &quot;Testing this macro&quot;&gt;&gt;Let&#39;s see what happens when I add this to the macro&lt;&lt;/message&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Dialogue" tags="" position="1701,223" size="100,100">&lt;&lt;set $dialogue = {
+&lt;&lt;message &quot;Testing this macro&quot;&gt;&gt;Let&#39;s see what happens when I add this to the macro&lt;&lt;/message&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="DialogueRegistry" tags="" position="1701,223" size="100,100">&lt;&lt;set setup.dialogue = {
 	&quot;char&quot; : {
 		&quot;meetaerel1&quot; : &quot;Why am I here?&quot;
 	},
@@ -1494,7 +1704,9 @@ NPC&#39;s
 	&quot;start_domain&quot; : {
 		&quot;note&quot; : &quot;\&#39;My\&#39; domains?&quot;,
 		&quot;text&quot; : &quot;\&quot;Domains, yes. As stated, yours are Love and Lust. A sub-domain from my domain of Emotions. You will likely live a very pleasurable life, whether or not you succeed in reaching immortality. Right now you are a Godling, barely above a human, a tiny spark of divinity in your core, which you will need to nurture into a roaring fire, before you can take your place amongst the Gods.\&quot;&quot;
-	}
+	},
+	&quot;basicFollowing&quot; : &quot;Alright, your quest now is to gain at least 2 followers.&quot;,
+	&quot;basicFollowingPrefix&quot; : &quot;Hey, wanna start a quest?&quot;
 }&gt;&gt;
 
 </tw-passagedata><tw-passagedata pid="41" name="DialogueWidget" tags="widget nobr" position="350,651" size="100,100">&lt;!-- name key responcepassage --&gt;
@@ -1509,7 +1721,7 @@ NPC&#39;s
 	&lt;&lt;script&gt;&gt;
 		$(State.temporary.buttonToRemove).hide();
 	&lt;&lt;/script&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="CheckitWidget" tags="widget nobr" position="501,403" size="100,100">/*	&lt;&lt;checkit&gt;&gt; widget
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="CheckitWidget" tags="widget nobr" position="222,899" size="100,100">/*	&lt;&lt;checkit&gt;&gt; widget
 	This allows you to display a custom checkbox which sets a SugarCube
 	variable, displays a (clickable) label, and satisfies accessibility
 	guidelines for users with impairments (i.e. works with TAB focus).
@@ -1547,7 +1759,7 @@ NPC&#39;s
 &lt;link type=&quot;text/css&quot; href=&quot;../style/jquery.jscrollpane.css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot; /&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;http://jscrollpane.kelvinluck.com/script/jquery.jscrollpane.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js&quot;&gt;&lt;/script&gt;
-</tw-passagedata><tw-passagedata pid="45" name="A Divine Meeting" tags="no-map no-meter" position="1178.9999999999998,645.9999999999999" size="100,100">&lt;&lt;font &quot;A Divine Meeting&quot; 48 &quot;white&quot; &quot;&quot;&gt;&gt; &lt;hr&gt;
+</tw-passagedata><tw-passagedata pid="45" name="A Divine Meeting" tags="no-map no-meter" position="1579,1158" size="100,100">&lt;&lt;font &quot;A Divine Meeting&quot; 48 &quot;white&quot; &quot;&quot;&gt;&gt; &lt;hr&gt;
 
 &lt;span class=&quot;drunk&quot;&gt;&quot;Ah, you&#39;re finally awake.&quot;&lt;/span&gt; Booms a voice in front of you, and after a few seconds you manage to make sense of the swirling colours that your eyes are assaulted by.
 
@@ -1590,7 +1802,10 @@ The man starts to laugh, which stops you from scanning him over any further, now
 		});
 	&lt;&lt;/script&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
-[[testaa]] </tw-passagedata><tw-passagedata pid="46" name="PassageDone" tags="" position="233,101" size="100,100">&lt;&lt;script&gt;&gt;
+[[testaa]]
+&lt;&lt;for _fetish range setup.fetishes&gt;&gt;
+	_fetish
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="PassageDone" tags="" position="233,101" size="100,100">&lt;&lt;script&gt;&gt;
 
 // Apply maphilight to all images that have a usemap attribute, e.g.
 // all the maps that are in this twine. This sets the default styling
@@ -1604,7 +1819,7 @@ $(&quot;img.overlaymap&quot;).maphilight({
   stroke: true,           	// Outline the area?
   strokeColor: &#39;222222&#39;,
   strokeOpacity: 1,
-  strokeWidth: 5,			// Outline width
+  strokeWidth: 3,			// Outline width
   fade: true,             	// Animate when hovered with a fade?
   alwaysOn: false,        	// Always show the areas?
   neverOn: false,
@@ -1613,15 +1828,15 @@ $(&quot;img.overlaymap&quot;).maphilight({
   shadow: true,
   shadowX: 0,
   shadowY: 0,
-  shadowRadius: 6,
-  shadowColor: &#39;FF0000&#39;,
+  shadowRadius: 8,
+  shadowColor: &#39;000000&#39;,
   shadowOpacity: 0.8,
   shadowPosition: &#39;outside&#39;,
   shadowFrom: false
 });
 
 &lt;&lt;/script&gt;&gt;
-</tw-passagedata><tw-passagedata pid="47" name="LegendWidget" tags="widget nobr" position="221,775" size="100,100">&lt;!-- &lt;&lt;legend &#39;name&#39;&gt;&gt; --&gt;
+</tw-passagedata><tw-passagedata pid="47" name="LegendWidget" tags="widget nobr" position="219,770" size="100,100">&lt;!-- &lt;&lt;legend &#39;name&#39;&gt;&gt; --&gt;
 &lt;&lt;widget &quot;legend&quot;&gt;&gt;
 	&lt;&lt;mouseover&gt;&gt;
 		&lt;&lt;print $args[0]&gt;&gt;
@@ -1651,43 +1866,115 @@ $(&quot;img.overlaymap&quot;).maphilight({
 	&lt;&lt;/mouseover&gt;&gt;
 &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="Lore Help" tags="" position="46,1526" size="100,100">Lady Oris -&gt; Life
 Lord Aeus -&gt; Ocean
-Lord Kaitus -&gt; War</tw-passagedata><tw-passagedata pid="49" name="MessageWidget" tags="widget nobr" position="345,900" size="100,100">&lt;!-- &lt;&lt;msg object&gt;&gt;--&gt;
+Lord Kaitus -&gt; War</tw-passagedata><tw-passagedata pid="49" name="MessageWidget" tags="widget nobr" position="95,900" size="100,100">&lt;!-- &lt;&lt;msg object&gt;&gt;--&gt;
 &lt;&lt;widget &quot;msg&quot;&gt;&gt;
 	&lt;&lt;set _uniqueid = $args[0].note.split(&#39;&quot;&#39;).join(&#39;&#39;).split(&#39; &#39;).join(&#39;&#39;).replace(/\W/g, &#39;&#39;).toLowerCase()&gt;&gt;
 	&lt;&lt;message $args[0].note btn _uniqueid&gt;&gt;
 		&lt;&lt;tab&gt;&gt;
 		&lt;&lt;print $args[0].text&gt;&gt;
 	&lt;&lt;/message&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="testaa" tags="" position="1322,172.66666666666652" size="100,100">&lt;&lt;button &quot;Add XP&quot;&gt;&gt;
-	&lt;&lt;xp 20&gt;&gt;
-&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="StatRules" tags="" position="1891,225" size="100,100">&lt;&lt;set $maxHealth = 100&gt;&gt;
-&lt;&lt;set $minHealth = 0&gt;&gt;
-&lt;&lt;set $maxInt = 20&gt;&gt;
-&lt;&lt;set $maxStr = 20&gt;&gt;
-&lt;&lt;set $maxDex = 20&gt;&gt;
-&lt;&lt;set $maxVers = 100&gt;&gt;
-&lt;&lt;set $minVers = 0&gt;&gt;
-&lt;&lt;set $maxEgo = 100&gt;&gt;
-&lt;&lt;set $minEgo = 0&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="testaa" tags="" position="1553,1300" size="100,100">&lt;&lt;button &quot;Add XP&quot;&gt;&gt;
+	&lt;&lt;xp 500&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;&lt;button &quot;Add HP&quot;&gt;&gt;
+	&lt;&lt;hp 20&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;&lt;button &quot;Remove HP&quot;&gt;&gt;
+	&lt;&lt;hp -20&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+
+&lt;&lt;money 50 &quot;gold&quot;&gt;&gt;
+&lt;&lt;money 23 &quot;silver&quot;&gt;&gt;
+&lt;&lt;money 82 &quot;copper&quot;&gt;&gt;
+&lt;&lt;moneyprint $char.money&gt;&gt;
+
+
+&lt;&lt;if $npc.Fawkes.pierced&gt;&gt;
+	You pull on the chain linking Fawkes&#39; nipples, earning you a deep moan from the sailor.
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $npc.Aerel.pierced&gt;&gt;
+	You flick your thumb over the platinum PA in your dad&#39;s cock, earning a moan you know he would never admit to have come from him.
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;nobr&gt;&gt;
+&lt;&lt;if diceRoll(&quot;1db20&quot;) &gt;= 15&gt;&gt;
+	alert(&quot;It worked&quot;)
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+&lt;p id=&quot;dice&quot;&gt;&lt;/p&gt;
+
+&lt;&lt;quest &quot;basicFollowing&quot; setup.dialogue.basicFollowingPrefix&gt;&gt;
+
+&lt;&lt;quest &quot;mielBodyCollect&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="StatRulesRegistry" tags="" position="1891,225" size="100,100">&lt;&lt;set setup.maxHealth = 100&gt;&gt;
+&lt;&lt;set setup.minHealth = 0&gt;&gt;
+&lt;&lt;set setup.maxInt = 20&gt;&gt;
+&lt;&lt;set setup.maxStr = 20&gt;&gt;
+&lt;&lt;set setup.maxDex = 20&gt;&gt;
+&lt;&lt;set setup.maxVers = 100&gt;&gt;
+&lt;&lt;set setup.minVers = 0&gt;&gt;
+&lt;&lt;set setup.maxEgo = 100&gt;&gt;
+&lt;&lt;set setup.minEgo = 0&gt;&gt;
 
 
 &lt;!-- player xp calculations --&gt;
-&lt;&lt;set $xpConstant = 5 / 4&gt;&gt;
-&lt;&lt;set $maxXP = Math.pow($char.lvl, $xpConstant) * 100&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="XPWidget" tags="widget nobr" position="203,903" size="100,100">&lt;!-- usage &lt;&lt;xp amount&gt;&gt; --&gt;
+&lt;&lt;set setup.xpConstant = 5 / 4&gt;&gt;
+&lt;&lt;set setup.maxXP = Math.pow($char.lvl, setup.xpConstant) * 100&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="BarWidget" tags="widget nobr" position="96,774" size="100,100">&lt;!-- usage &lt;&lt;xp amount&gt;&gt; --&gt;
 &lt;&lt;widget &quot;xp&quot;&gt;&gt;
 	&lt;&lt;set $char.xp += $args[0]&gt;&gt;
-	&lt;&lt;if $char.xp &gt;= $maxXP&gt;&gt;
+	&lt;&lt;if $char.xp &gt;= setup.maxXP&gt;&gt;
 		&lt;&lt;set $char.lvl += 1&gt;&gt;
-		&lt;&lt;set $char.xp = $char.xp - $maxXP&gt;&gt;
-		&lt;&lt;set $maxXP = Math.floor(Math.pow($char.lvl, $xpConstant) * 100)&gt;&gt;
+		&lt;&lt;set $char.xp = $char.xp - setup.maxXP&gt;&gt;
+		&lt;&lt;set setup.maxXP = Math.floor(Math.pow($char.lvl, setup.xpConstant) * 100)&gt;&gt;
 		&lt;&lt;replace &quot;#char-level&quot;&gt;&gt;&lt;&lt;print &quot;Level: &quot; + $char.lvl&gt;&gt;&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;set _xp = $char.xp / $maxXP&gt;&gt;
+	&lt;&lt;set _xp = $char.xp / setup.maxXP&gt;&gt;
 	&lt;&lt;updatemeter &#39;xpBar&#39; _xp&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="GlobalVars" tags="" position="1898,361" size="100,100">&lt;&lt;set $daddyAerel = false&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="StoryShare" tags="" position="218,221" size="100,100">&lt;a href=&quot;https://twitter.com/NSachell&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Despair-Dev/The-City-Of-Roalake/master/images/external/Twitter_Social_Icon_Circle_Color.svg?sanitize=true&quot; width=&quot;16&quot; height=&quot;16&quot;&gt; Despair-Dev&#39;s Twitter&lt;/a&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;!-- usage &lt;&lt;hp amount&gt;&gt; --&gt;
+&lt;&lt;widget &quot;hp&quot;&gt;&gt;
+	&lt;&lt;set $char.health += $args[0]&gt;&gt;
+	&lt;&lt;if $char.health &gt; setup.maxHealth&gt;&gt;
+		&lt;&lt;set $char.health = setup.maxHealth&gt;&gt;
+	&lt;&lt;elseif $char.health &lt; 0&gt;&gt;
+		&lt;&lt;set $char.health = 0&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set _hp = $char.health / setup.maxHealth&gt;&gt;
+	&lt;&lt;updatemeter &#39;healthBar&#39; _hp&gt;&gt; 
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;str&quot;&gt;&gt;
+	&lt;&lt;set $char.str += $args[0]&gt;&gt;
+	&lt;&lt;if $char.str &gt; setup.maxStr&gt;&gt;
+		&lt;&lt;set $char.str = setup.maxStr&gt;&gt;
+	&lt;&lt;elseif $char.str &lt; 0&gt;&gt;
+		&lt;&lt;set $char.str = 0&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;int&quot;&gt;&gt;
+	&lt;&lt;set $char.int += $args[0]&gt;&gt;
+	&lt;&lt;if $char.int &gt; setup.maxInt&gt;&gt;
+		&lt;&lt;set $char.int = setup.maxInt&gt;&gt;
+	&lt;&lt;elseif $char.int &lt; 0&gt;&gt;
+		&lt;&lt;set $char.int = 0&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;dex&quot;&gt;&gt;
+	&lt;&lt;set $char.dex += $args[0]&gt;&gt;
+	&lt;&lt;if $char.dex &gt; setup.maxDex&gt;&gt;
+		&lt;&lt;set $char.dex = setup.maxDex&gt;&gt;
+	&lt;&lt;elseif $char.dex &lt; 0&gt;&gt;
+		&lt;&lt;set $char.dex = 0&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="GlobalVars" tags="" position="1898,361" size="100,100"></tw-passagedata><tw-passagedata pid="54" name="StoryShare" tags="" position="218,221" size="100,100">&lt;a href=&quot;https://twitter.com/NSachell&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Despair-Dev/The-City-Of-Roalake/master/images/external/Twitter_Social_Icon_Circle_Color.svg?sanitize=true&quot; width=&quot;16&quot; height=&quot;16&quot;&gt; Despair-Dev&#39;s Twitter&lt;/a&gt;
+
+&lt;a href=&quot;https://twitter.com/NSachell&quot;&gt;&lt;img src=&quot;images/external/Twitter_Social_Icon_Circle_Color.svg&quot; width=&quot;16&quot; height=&quot;16&quot;&gt; Despair-Dev&#39;s Twitter&lt;/a&gt;
 
 
-</tw-passagedata><tw-passagedata pid="55" name="Intro" tags="no-map no-meter" position="1076,500" size="100,100">&lt;&lt;nobr&gt;&gt;
+</tw-passagedata><tw-passagedata pid="55" name="Intro" tags="no-map no-meter" position="1239,1091" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;set $intro = 0&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 &lt;&lt;tab&gt;&gt;You find yourself floating in a dark abyss, the only illumination coming from yourself, a light golden glow emanating from your skin.
@@ -1737,15 +2024,20 @@ Perhaps you should look through your &#39;&#39;Settings&#39;&#39; and make sure 
 
 &lt;&lt;silently&gt;&gt;
 	&lt;&lt;script&gt;&gt;
+	
+	
 		$(function(){
 			$(&quot;#menu-item-settings&quot;).click(function() {
 				if(State.variables.intro == 0){
 					State.variables.intro = 1;
+					$(&quot;#menu li:nth-child(2) a&quot;).css(&quot;color&quot;, &quot;FF0000&quot;);
 				}
 			});
 		});
 	&lt;&lt;/script&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Intro2" tags="" position="947.6666666666669,495.99999999999994" size="100,100">→ How tall might you be?
+&lt;&lt;/silently&gt;&gt;
+
+</tw-passagedata><tw-passagedata pid="56" name="Intro2" tags="" position="1110,1085" size="100,100">→ How tall might you be?
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;if settings.imperial&gt;&gt;
 	&lt;&lt;numberslider &quot;$char.heightfoot&quot; $char.heightfoot 4 8 1&gt;&gt;Feet&lt;br&gt;
@@ -1753,13 +2045,190 @@ Perhaps you should look through your &#39;&#39;Settings&#39;&#39; and make sure 
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;numberslider &quot;$char.heightcm&quot; $char.heightcm 120 240 1&gt;&gt;cm
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Intro3" tags="" position="1024.3333333333333,374.3333333333333" size="100,100">&lt;&lt;silently&gt;&gt;&lt;&lt;set _StatPool = 6&gt;&gt;&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Intro3" tags="" position="1187,964" size="100,100">&lt;&lt;silently&gt;&gt;&lt;&lt;set _StatPool = 6&gt;&gt;&lt;&lt;/silently&gt;&gt;
 → Now what might your stats be?
 You have &lt;span id=&quot;stat-pool&quot;&gt;_StatPool&lt;/span&gt; points remaining to allocate.&lt;&lt;numberpool &quot;_StatPool&quot;&gt;&gt;\
 |STR:|&lt;&lt;numberbox &quot;$char.str&quot; $char.str 1 20&gt;&gt;|
 |INT:|&lt;&lt;numberbox &quot;$char.int&quot; $char.int 1 20&gt;&gt;|
 |DEX:|&lt;&lt;numberbox &quot;$char.dex&quot; $char.dex 1 20&gt;&gt;|&lt;&lt;onchange&gt;&gt;&lt;&lt;replace &quot;#stat-pool&quot;&gt;&gt;_StatPool&lt;&lt;/replace&gt;&gt;&lt;&lt;/numberpool&gt;&gt;\
 
+</tw-passagedata><tw-passagedata pid="58" name="yGalleryIntegration" tags="" position="356,101" size="100,100">&lt;&lt;script&gt;&gt;
+const params = new URLSearchParams(window.location.search);
+
+State.variables.isAux = params.get(&#39;aux&#39;) || false;
+const cardText = params.get(&#39;cardText&#39;) || &#39;#eee&#39;;
+const cardBackground = params.get(&#39;cardBackground&#39;) || &#39;#111&#39;;
+
+$(function(){
+	$(body).css({
+		&quot;background-color&quot; : cardBackground,
+		&quot;color&quot; : cardText
+	});
+});
+
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="LocalSetup" tags="" position="350,218" size="100,100">&lt;&lt;script&gt;&gt;
+if (window.hasOwnProperty(&quot;storyFormat&quot;) || document.location.href.toLowerCase().includes(&quot;/temp/&quot;)) {
+	setup.SetupPath = &quot;C:/Users/jonat/Documents/Twine/Stories/&quot;;
+} else {
+	setup.SetupPath = &quot;&quot;;
+}
+setup.SoundPath = setup.SetupPath + &quot;sounds/&quot;;
+setup.ImagePath = setup.SetupPath + &quot;images/&quot;;
+setup.IncludePath = setup.SetupPath + &quot;includes/&quot;;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="ExternalWidget" tags="widget nobr" position="101,526" size="100,100">
+&lt;&lt;widget &quot;loadexternal&quot;&gt;&gt;
+	&lt;&lt;script&gt;&gt;
+		var argx = State.variables.args[0];
+		$(document).ready(function () { 
+			$.get(setup.IncludePath + argx + &#39;.faos&#39;, function(data) {
+				$.wiki(data);
+			});
+		});
+	&lt;&lt;/script&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="ModRegistry" tags="" position="546,98" size="100,100">&lt;!-- Rough registry ========================= --&gt;
+&lt;&lt;set $mod_init_factories = [
+	&quot;aux_init&quot;
+]&gt;&gt;
+
+&lt;&lt;set $mod_npc_factories = [
+	&quot;aux_npcs&quot;
+]&gt;&gt;
+
+
+&lt;!-- Loading external ========================= --&gt;
+&lt;&lt;for _i, _file range $mod_init_factories&gt;&gt;
+	&lt;&lt;loadexternal _file&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
+&lt;&lt;for _i, _file range $mod_npc_factories&gt;&gt;
+	&lt;&lt;loadexternal _file&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
+
+</tw-passagedata><tw-passagedata pid="62" name="Notes &amp; Scribbles" tags="" position="43,1661" size="100,100">Scenes:
+
+
+Two apprentice mages (Miel + friend) set out for the monster controlled temple of Akarr. They get separated and Miel uses a modified detachment spell to become invulnerable, but his bodyparts are spread around the temple.
+Player meets the other apprentice and sets out to find all of Miel&#39;s bodyparts.
+His cock is eventually used to cockvore and contain a slime broodmother.
+Miel then onwards ejaculate cum-slimes which they then write a thesis on the natural adaptability of slimes. They also have quite some fun with said detached cock, and eventually decide to never properly re-attach it.
+
+Andreas is tired of running his barely functional bar, but with the help of the player, is finally convinced to follow his desires, and invests in a job for a willing subject, which again, thanks to the player, drinks a potion to gain hyperspermia, making him cum in excessive amounts.
+If cumplay is active, the subject&#39;s cum is sold as a drink.
+If monster is active, subject is a minotaur.
+If pissing is active, subject&#39;s piss is sold as &quot;house beer&quot;.
+If slavery is active, subject is a slave bought by both Andreas and the player.
+
+Hanecock is the son of a noble who ran away to get away from the stress &amp; pressure of nobility.
+Player is tasked with finding him, and does so in Wildehall, sitting against a housewall, in broad daylight, smoking tobacco laced with various other herbs from a pipe, without any clothes. No, he hasn&#39;t lost his clothes, he just wants to be &#39;free&#39;.
+If exhib is active, Hanecock is on the main street, in full view of everyone else. If not, he&#39;s in an empty alley. The following scenarios reflect this.
+If dubcon is active, the player sucks him off when he falls asleep (encouraged by Hanecock)
+If aphro is active, the player tries his pipe. Ends up riding Hanecock while he lays back and lets the player use him.
+If incest is active, there&#39;s another scene where the player returns to Hanecock&#39;s father telling him Hanecock left of his own volition; Not believing the player, player escorts him to his son, who&#39;s sleeping in the nude outside. Trips and faceplants between his son&#39;s legs. Hanecock wakes up but doesn&#39;t see his dads face. Pulls his head closer to his rising cock and gets him to (easily) suck his cock.
+
+David the 11′2″ golem/statue is found by the player when visiting a noble and finding a hidden room.
+David is a human turned into a statue by a curse. He doesn&#39;t want to get rid of the curse, but to find a meaning to life in his &quot;new&quot; form.
+While able to move (after the player removes the cursed necklace around his neck) it is quite tiring for him.
+He enjoys being treated as nothing but a statue.
+If exhib is enabled, he&#39;s nude and erect.
+If pet is enabled, he enjoys being a &quot;butler&quot; for the player to use as he wants; Often found standing in the Player&#39;s bedroom at night.
+If denial is enabled, he enjoys not being able to cum as even though he can feel, he cannot actually ejaculate.
+
+</tw-passagedata><tw-passagedata pid="63" name="QuestRegistry" tags="" position="1706,358" size="100,100">&lt;!-- use clone(setup.quests.empty) for easy copy/paste if you want to set fields one by one --&gt;
+&lt;&lt;set setup.questempty = {
+	&quot;name&quot;         : &quot;&quot;,
+	&quot;propername&quot;   : &quot;&quot;,
+	&quot;started&quot;      : false,
+	&quot;finished&quot;     : false,
+	&quot;requirements&quot; : [],
+	&quot;stages&quot;       : [],
+	&quot;currentStage&quot; : -1,
+	&quot;tooltip&quot;      : []
+}&gt;&gt;
+
+&lt;&lt;set $quests = {}&gt;&gt;
+
+&lt;&lt;set $quests.basicFollowing = {
+	&quot;name&quot;         : &quot;basicFollowing&quot;,
+	&quot;propername&quot;   : &quot;Getting a following&quot;,
+	&quot;started&quot;      : false,
+	&quot;finished&quot;     : false,
+	&quot;requirements&quot; : [],
+	&quot;stages&quot;       : [0],
+	&quot;currentStage&quot; : 0,
+	&quot;tooltip&quot;      : [
+		&quot;Gain two or more followers.&quot;
+	]
+}&gt;&gt;
+
+&lt;&lt;set $quests.helpRenardStealKey = {
+	&quot;name&quot;         : &quot;&quot;,
+	&quot;propername&quot;   : &quot;&quot;,
+	&quot;started&quot;      : false,
+	&quot;finished&quot;     : false,
+	&quot;requirements&quot; : [],
+	&quot;stages&quot;       : [],
+	&quot;currentStage&quot; : -1,
+	&quot;tooltip&quot;      : []
+}&gt;&gt;
+
+&lt;&lt;set $quests.mielBodyCollect = {
+	&quot;name&quot;         : &quot;mielBodyCollect&quot;,
+	&quot;propername&quot;   : &quot;Assembling the Apprentice&quot;,
+	&quot;started&quot;      : false,
+	&quot;finished&quot;     : false,
+	&quot;requirements&quot; : [
+        &quot;followers : 4&quot;, 
+        &quot;quest : helpRenardStealKey&quot;
+    ],
+	&quot;stages&quot;       : [6],
+	&quot;currentStage&quot; : -1,
+	&quot;tooltip&quot;      : [
+		&quot;You&#39;ve been tasked to find all parts of Miel.\nHe&#39;s in 6 pieces.&quot;,
+		&quot;You&#39;ve found Miel&#39;s left arm.\nOnly 6 parts of him left!&quot;,
+		&quot;You&#39;ve found both of Miel&#39;s arms.\nOnly 5 parts of jim left!&quot;,
+		&quot;You&#39;ve found both of Miel&#39;s arms and his left leg.\nOnly 4 parts of him left!&quot;,
+		&quot;You&#39;ve found all of Miel&#39;s limbs.\nOnly 3 parts of him left.&quot;,
+		&quot;You&#39;ve found his torso and all his limbs!\n Only Miel&#39;s head and cock left to find.&quot;,
+		&quot;You&#39;ve found all of Miel except his cock!\nHe //really// wants his cock back!&quot;
+	]
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Untitled Passage" tags="" position="1323,578" size="100,100"></tw-passagedata><tw-passagedata pid="65" name="questWidget" tags="widget nobr" position="350,895" size="100,100">&lt;!-- usage &lt;&lt;quest &quot;name&quot; [prefix monologue]&gt;&gt; --&gt;
+&lt;&lt;widget &quot;quest&quot;&gt;&gt;
+	&lt;&lt;if !$quests[$args[0]].started&gt;&gt;
+		&lt;&lt;set _allow = true&gt;&gt;
+		&lt;&lt;for _req range $quests[$args[0]].requirements&gt;&gt;
+			&lt;&lt;if _req.startsWith(&quot;followers : &quot;)&gt;&gt;
+				&lt;&lt;set _wanted = parseInt(_req.replace(&quot;followers : &quot;, &quot;&quot;))&gt;&gt;
+				&lt;&lt;if $char.followers &lt; _wanted&gt;&gt;
+					&lt;&lt;set _allow = false&gt;&gt;
+					&lt;&lt;break&gt;&gt;
+				&lt;&lt;/if&gt;&gt;
+			&lt;&lt;elseif _req.startsWith(&quot;quest : &quot;)&gt;&gt;
+				&lt;&lt;set _wanted = _req.replace(&quot;quest : &quot;, &quot;&quot;)&gt;&gt;
+				&lt;&lt;if $quests[_wanted].finished == false&gt;&gt;
+					&lt;&lt;set _allow = false&gt;&gt;
+					&lt;&lt;break&gt;&gt;
+				&lt;&lt;/if&gt;&gt;
+			&lt;&lt;/if&gt;&gt;
+		&lt;&lt;/for&gt;&gt;
+		&lt;&lt;if _allow&gt;&gt;
+			&lt;&lt;if def $args[1]&gt;&gt;
+				&lt;&lt;print setup.dialogue[$args[1]]&gt;&gt;&lt;br&gt;
+			&lt;&lt;/if&gt;&gt;
+			&lt;&lt;button $quests[$args[0]].propername&gt;&gt;
+				&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;print setup.dialogue[$args[0]]&gt;&gt;
+				&lt;&lt;print $quests[$args[0]].propername&gt;&gt;
+				&lt;&lt;set $quests[$args[0]].started = true&gt;&gt;
+				&lt;&lt;set _text = &quot;You have started Quest: //&quot; + $quests[$args[0]].propername + &quot;//!&quot;&gt;&gt;
+				&lt;&lt;notify 5000&gt;&gt;
+					&lt;&lt;print _text&gt;&gt;
+				&lt;&lt;/notify&gt;&gt;
+			&lt;&lt;/button&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
 </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
