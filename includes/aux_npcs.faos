@@ -1,0 +1,17 @@
+<!-- name, str, int, dex, vers, ego, height, money-->
+
+/* Marcus the Centaur */
+<<set _fets = ["overstimulation", "worship", "endurance"]>>
+<<set _flags = ["equine","flared","mottled"]>>
+<<npcfactoryfull "Marcus" 6 16 12 40 70 184 500 _fets 58 "proportionate" _flags>>
+
+<!-- name, str, int, dex, vers, ego, height, money fetish-array[] cock-length cock-width |cock-flags| -->
+/* Hayn the Demon */
+<<set _kinks = ["overstimulation", "worship", "endurance"]>>
+<<npcfactoryfull "Hayn" 11 12 8 70 70 176 1200 _kinks 20 "proportionate">>
+
+/* Marcus the barkeeper */
+<<set _fets = ["bondage", "exhib", "cumplay"]>>
+<<npcfactoryfull "Marcus" 6 16 12 40 70 184 500 _fets 17 5>>
+
+<<set $npc.Fawkes.pierced = true>>

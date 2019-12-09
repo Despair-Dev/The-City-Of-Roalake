@@ -1,0 +1,19 @@
+<<script>>
+Setting.addToggle("bestiality", {
+	desc:"Sexual activity with a feral animal.",
+	label:"Bestiality",
+	default:false});
+setup.fetishes.bestiality = "bestiality";
+
+Setting.addToggle("monster", {
+	desc:"Sexual activity with another sentient non-humanoid being.\nExample: Centaurs\nThese encounters very likely feature non/in-human genitalia.",
+	label:"Teratophilia",
+	default:false});
+setup.fetishes.monster = "monster";
+
+Setting.addToggle("maleherm", {
+	desc:"Sexual activity featuring male-herms, FtM-trans and/or cunt-boys.\nEssentially men with vaginas.",
+	label:"Maleherm",
+	default:false});
+setup.fetishes.maleherm = "maleherm";
+<</script>>
